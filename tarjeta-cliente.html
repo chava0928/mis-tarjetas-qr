@@ -7,30 +7,21 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
         body { background: #f0f2f5; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
-        .tarjeta { width: 100%; max-width: 380px; background: white; border-radius: 16px; overflow: hidden; border: 1px solid #eee; }
-        .portada { width: 100%; height: 200px; background: #2563eb; background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)); background-size: cover; background-position: center; }
-        .foto-perfil { width: 130px; height: 130px; border-radius: 50%; border: 5px solid white; margin: -65px auto 15px; background: #e5e7eb; display: flex; align-items: center; justify-content: center; font-size: 40px; color: #9ca3af; overflow: hidden; object-fit: cover; }
+        .tarjeta { width: 100%; max-width: 380px; background: white; border-radius: 16px; overflow: hidden; border: 1px solid #eee; padding-bottom: 10px; }
+        .portada { width: 100%; height: 200px; background: #2563eb; background-size: cover; background-position: center; }
+        .foto-perfil { width: 130px; height: 130px; border-radius: 50%; border: 5px solid white; margin: -65px auto 15px; background: #e5e7eb; display: flex; align-items: center; justify-content: center; font-size: 40px; color: #9ca3af; overflow: hidden; background-size: cover; background-position: center; }
         .nombre { text-align: center; font-size: 28px; font-weight: bold; color: #111; margin-bottom: 5px; padding: 0 10px; }
         .cargo { text-align: center; font-size: 18px; color: #6b7280; margin-bottom: 25px; padding: 0 10px; }
         .dato { display: flex; align-items: center; gap: 12px; padding: 10px 25px; color: #374151; font-size: 15px; }
         .icono { font-size: 20px; width: 25px; text-align: center; }
-        .boton-guardar { display: block; margin: 25px auto; padding: 14px 30px; background: #2563eb; color: white; text-align: center; border-radius: 50px; font-weight: bold; text-decoration: none; width: fit-content; }
+        .boton-guardar { display: block; margin: 25px auto; padding: 14px 30px; background: #2563eb; color: white; text-align: center; border-radius: 50px; font-weight: bold; text-decoration: none; }
     </style>
 </head>
 <body>
-     <div class="tarjeta">
-    <div class="portada" style="background-image: url();"></div>
-    <div class="foto-perfil" style="background-image: url();background-size:cover;background-position:center;">👤</div>
-    <h3 class="nombre">Francisco Chavarriaga</h3>
-    <p class="cargo">Desarrollador de software</p>
-<div class="dato"><span class="icono">📞</span><span>3011529194</span></div>
-<div class="dato"><span class="icono">✉️</span><span>franciscochavarriaga4@gmail.com</span></div>
-<div class="dato"><span class="icono">🌐</span><a href="https://nodejs.org/es" target="_blank">https://nodejs.org/es</a></div>
-<div class="dato"><span class="icono">📘</span><a href="https://www.facebook.com/share_channel/#" target="_blank">Facebook</a></div>
-<div class="dato"><span class="icono">📸</span><a href="https://www.instagram.com/" target="_blank">Instagram</a></div>
-</div>    
+    <div class="tarjeta">
+        <!-- AQUÍ PEGAS EXACTAMENTE EL CÓDIGO QUE TE GENERA LA HERRAMIENTA -->
 
-        <a href="contacto.vcf" class="boton-guardar" download>📥 Guardar Contacto</a>
+        <a href="contacto.vcf" class="boton-guardar">Guardar Contacto</a>
     </div>
 </body>
 </html>

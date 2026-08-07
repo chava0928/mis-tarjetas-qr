@@ -85,6 +85,8 @@
                 <br><br>
                 <button id="btnDescargar" onclick="descargarQR()">💾 Descargar Imagen QR</button>
             </div>
+            <button onclick="generarCodigoTarjeta()" style="width:100%;padding:12px;background:#f59e0b;color:white;border:none;border-radius:8px;font-weight:bold;margin-top:10px;cursor:pointer;">📄 Obtener código de la tarjeta</button>
+<textarea id="codigoGenerado" readonly style="width:100%;min-height:180px;margin-top:10px;padding:10px;border:1px solid #d1d5db;border-radius:8px;font-size:11px;display:none;"></textarea>
         </div>
 
         <div class="seccion vista-tarjeta">
@@ -222,6 +224,47 @@ function generarQR() {
         }
 
         actualizarVista();
+        function generarCodigoTarjeta() {
+    const n = document.getElementById('nombre').value;
+    const c = document.getElementById('cargo').value;
+    const t = document.getElementById('telefono').value;
+    const co = document.getElementById('correo').value;
+    const w = document.getElementById('web').value;
+    const f = document.getElementById('facebook').value;
+    const i = document.getElementById('instagram').value;
+
+    const codigo = `<div class="tarjeta">
+    <div class="portada" style="background-image: url(${urlPortada});"></div>
+    <div class="foto-perfil" style="background-image: url(${urlFotoPerfil});background-size:cover;background-position:center;">${!urlFotoPerfil ? '👤' : ''}</div>
+    <h3 class="nombre">${n || 'Nombre Completo'}</h3>
+    <p class="cargo">${c || 'Cargo / Profesión'}</p>
+${t?`<div class="dato"><span class="icono">📞</span><span>${t}</span></div>`:''}
+${co?`<div class="dato"><span class="icono">✉️</span><span>${co}</span></div>`:''}
+${w?`<div class="dato"><span class="icono">🌐</span><a href="${w}" target="_blank">${w}</a></div>`:''}
+${f?`<div class="dato"><span class="icono">📘</span><a href="${f}" target="_blank">Facebook</a></div>`:''}
+${i?`<div class="dato"><span class="icono">📸</span><a href="${i}" target="_blank">Instagram</a></div>`:''}
+</div>`;
+    document.getElementById('codigoGenerado').style.display = 'block';
+    document.getElementById('codigoGenerado').value = codigo;
+    alert('¡Código listo! Copia todo y pégalo en tarjeta-cliente.html ✅');
+}
+let urlPortada = "";
+let urlFotoPerfil = "";
+
+// Cargar portada
+document.getElementById('portada').addEventListener('change', function(e) {
+    const lector = new FileReader();
+    lector.onload = e => { urlPortada = e.target.result; };
+    lector.readAsDataURL(e.target.files[0]);
+});
+
+// Cargar foto de perfil
+document.getElementById('fotoPerfil').addEventListener('change', function(e) {
+    const lector = new FileReader();
+    lector.onload = e => { urlFotoPerfil = e.target.result; };
+    lector.readAsDataURL(e.target.files[0]);
+});
+        
     </script>
 </body>
 </html>

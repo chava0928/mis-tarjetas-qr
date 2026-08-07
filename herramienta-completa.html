@@ -197,22 +197,22 @@ URL:${enlaceWhatsapp || ''}
 END:VCARD`;
         }
 
-        function generarQR() {
-            const contenido = obtenerContenidoQR();
-            if (!contenido || contenido.trim() === 'BEGIN:VCARD\nVERSION:3.0\nFN:\nTITLE:\nTEL:\nEMAIL:\nURL:\nEND:VCARD') {
-                alert('Escribe al menos el nombre y un dato de contacto');
-                return;
-            }
-            document.getElementById('zonaQR').style.display = 'block';
-            document.getElementById('btnDescargar').style.display = 'none';
-            
-            QRCode.toCanvas(document.getElementById('codigoQR'), contenido, {
-                width: 350, margin: 3, color: { dark: '#111111', light: '#ffffff' }
-            }, function (error) {
-                if (error) alert('Error: ' + error);
-                else document.getElementById('btnDescargar').style.display = 'inline-block';
-            });
-        }
+        function obtenerContenidoQR() {
+    return "https://chava0928.github.io/mis-tarjetas-qr/tarjeta-cliente.html";
+}
+
+function generarQR() {
+    const contenido = obtenerContenidoQR();
+    document.getElementById('zonaQR').style.display = 'block';
+    document.getElementById('btnDescargar').style.display = 'none';
+    
+    QRCode.toCanvas(document.getElementById('codigoQR'), contenido, {
+        width: 350, margin: 3, color: { dark: '#111111', light: '#ffffff' }
+    }, function (error) {
+        if (error) alert('Error: ' + error);
+        else document.getElementById('btnDescargar').style.display = 'inline-block';
+    });
+}
 
         function descargarQR() {
             const enlace = document.createElement('a');

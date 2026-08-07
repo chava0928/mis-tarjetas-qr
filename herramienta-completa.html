@@ -22,7 +22,7 @@
 
         .vista-tarjeta { min-height: 600px; display: flex; flex-direction: column; align-items: center; }
         .tarjeta-previa { width: 100%; max-width: 380px; background: white; border-radius: 16px; overflow: hidden; border: 1px solid #eee; }
-        .portada-previa { width: 100%; height: 200px; background: #2563eb; background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(''); background-size: cover; background-position: center; }
+        .portada-previa { width: 100%; height: 200px; background: #2563eb; background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)); background-size: cover; background-position: center; }
         .foto-previa { width: 130px; height: 130px; border-radius: 50%; border: 5px solid white; margin: -65px auto 15px; background: #e5e7eb; display: flex; align-items: center; justify-content: center; font-size: 40px; color: #9ca3af; overflow: hidden; object-fit: cover; }
         .foto-previa img { width: 100%; height: 100%; object-fit: cover; }
         .nombre-previa { text-align: center; font-size: 28px; font-weight: bold; color: #111; margin-bottom: 5px; padding: 0 10px; }
@@ -31,6 +31,7 @@
         .icono-previa { font-size: 20px; width: 25px; text-align: center; }
         .boton-previa { display: block; margin: 25px auto; padding: 14px 30px; background: #2563eb; color: white; text-align: center; border-radius: 50px; font-weight: bold; text-decoration: none; width: fit-content; }
         .qr-resultado { margin-top: 25px; text-align: center; display: none; padding-top: 20px; border-top: 1px solid #eee; }
+        textarea { resize: vertical; }
 
         @media (max-width: 900px) {
             .contenedor-principal { grid-template-columns: 1fr; }
@@ -45,38 +46,41 @@
 
             <div class="grupo-campos">
                 <label>📸 Foto de portada:</label>
-                <input type="file" id="fotoPortada" accept="image/*" onchange="actualizarVista()">
+                <input type="file" id="fotoPortada" accept="image/*">
                 
                 <label>👤 Foto de perfil:</label>
-                <input type="file" id="fotoPerfil" accept="image/*" onchange="actualizarVista()">
+                <input type="file" id="fotoPerfil" accept="image/*">
             </div>
 
             <div class="grupo-campos">
                 <label>Nombre completo / Nombre del negocio:</label>
-                <input type="text" id="nombre" placeholder="Ej: Francisco Chavarriaga" oninput="actualizarVista()">
+                <input type="text" id="nombre" placeholder="Ej: Francisco Chavarriaga">
                 
                 <label>Cargo / Profesión / Actividad:</label>
-                <input type="text" id="cargo" placeholder="Ej: Desarrollador de Software" oninput="actualizarVista()">
+                <input type="text" id="cargo" placeholder="Ej: Desarrollador de Software">
             </div>
 
             <div class="grupo-campos">
                 <label>📞 Número de teléfono / WhatsApp:</label>
-                <input type="text" id="telefono" placeholder="+57 301 152 9194" oninput="actualizarVista()">
+                <input type="text" id="telefono" placeholder="+57 301 152 9194">
                 
                 <label>👤 Usuario de WhatsApp (si lo tiene):</label>
-                <input type="text" id="usuarioWhatsapp" placeholder="@pedroperez" oninput="actualizarVista()">
+                <input type="text" id="usuarioWhatsapp" placeholder="@pedroperez">
                 
                 <label>✉️ Correo electrónico:</label>
-                <input type="text" id="correo" placeholder="franciscochavarriaga4@gmail.com" oninput="actualizarVista()">
+                <input type="text" id="correo" placeholder="franciscochavarriaga4@gmail.com">
                 
                 <label>🌐 Sitio web / Enlace:</label>
-                <input type="text" id="web" placeholder="https://tusitio.com" oninput="actualizarVista()">
+                <input type="text" id="web" placeholder="https://tusitio.com">
                 
-                <label>📘 Facebook:</label>
-                <input type="text" id="facebook" placeholder="Enlace de tu perfil o página" oninput="actualizarVista()">
+                <label style="color:#1877F2; font-weight:bold;">f Facebook:</label>
+                <input type="text" id="facebook" placeholder="Enlace de tu perfil o página">
                 
                 <label>📸 Instagram:</label>
-                <input type="text" id="instagram" placeholder="Enlace de tu cuenta" oninput="actualizarVista()">
+                <input type="text" id="instagram" placeholder="Enlace de tu cuenta">
+                
+                <label>🔗 Enlace de tu tarjeta en GitHub:</label>
+                <input type="text" id="enlaceTarjeta" placeholder="https://chava0928.github.io/.../tarjeta-cliente.html">
             </div>
 
             <button id="btnGenerar" onclick="generarQR()">🔳 Generar Código QR</button>
@@ -86,7 +90,7 @@
                 <button id="btnDescargar" onclick="descargarQR()">💾 Descargar Imagen QR</button>
             </div>
             <button onclick="generarCodigoTarjeta()" style="width:100%;padding:12px;background:#f59e0b;color:white;border:none;border-radius:8px;font-weight:bold;margin-top:10px;cursor:pointer;">📄 Obtener código de la tarjeta</button>
-<textarea id="codigoGenerado" readonly style="width:100%;min-height:180px;margin-top:10px;padding:10px;border:1px solid #d1d5db;border-radius:8px;font-size:11px;display:none;"></textarea>
+<textarea id="codigoGenerado" readonly style="width:100%;min-height:180px;margin-top:10px;padding:10px;border:1px solid #d1d5db;border-radius:8px;font-size:11px;display:block;"></textarea>
         </div>
 
         <div class="seccion vista-tarjeta">
@@ -110,7 +114,7 @@
                     <span id="webPrevia"></span>
                 </div>
                 <div class="dato-previa" id="datoFacebook" style="display: none;">
-                    <span class="icono-previa">📘</span>
+                    <span class="icono-previa" style="color:#1877F2; font-weight:bold; font-size:22px;">f</span>
                     <span id="facebookPrevia"></span>
                 </div>
                 <div class="dato-previa" id="datoInstagram" style="display: none;">
@@ -118,45 +122,55 @@
                     <span id="instagramPrevia"></span>
                 </div>
 
-                <a href="#" class="boton-previa">Guardar Contacto</a>
+                <a id="botonGuardar" href="#" class="boton-previa">Guardar Contacto</a>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
     <script>
+        let urlPortada = "";
+        let urlFotoPerfil = "";
+
+        // Cargar y previsualizar portada
         document.getElementById('fotoPortada').addEventListener('change', function(e) {
             const archivo = e.target.files[0];
             if (archivo) {
                 const lector = new FileReader();
                 lector.onload = function(e) {
-                    document.getElementById('portadaPrevia').style.backgroundImage = `url('${e.target.result}')`;
+                    urlPortada = e.target.result;
+                    document.getElementById('portadaPrevia').style.backgroundImage = `url('${urlPortada}')`;
                 }
                 lector.readAsDataURL(archivo);
             }
         });
 
+        // Cargar y previsualizar foto de perfil
         document.getElementById('fotoPerfil').addEventListener('change', function(e) {
             const archivo = e.target.files[0];
             if (archivo) {
                 const lector = new FileReader();
                 lector.onload = function(e) {
-                    document.getElementById('fotoPrevia').innerHTML = `<img src="${e.target.result}" alt="Foto">`;
+                    urlFotoPerfil = e.target.result;
+                    document.getElementById('fotoPrevia').innerHTML = `<img src="${urlFotoPerfil}" alt="Foto">`;
                 }
                 lector.readAsDataURL(archivo);
             }
         });
 
+        // Actualizar vista en tiempo real
         function actualizarVista() {
-            document.getElementById('nombrePrevia').textContent = document.getElementById('nombre').value || 'Nombre o Negocio';
-            document.getElementById('cargoPrevia').textContent = document.getElementById('cargo').value || 'Cargo o Actividad';
-            
+            const nombre = document.getElementById('nombre').value.trim() || 'Nombre o Negocio';
+            const cargo = document.getElementById('cargo').value.trim() || 'Cargo o Actividad';
             const correo = document.getElementById('correo').value.trim();
             const tel = document.getElementById('telefono').value.trim();
             const web = document.getElementById('web').value.trim();
             const fb = document.getElementById('facebook').value.trim();
             const ig = document.getElementById('instagram').value.trim();
 
+            document.getElementById('nombrePrevia').textContent = nombre;
+            document.getElementById('cargoPrevia').textContent = cargo;
+            
             document.getElementById('correoPrevia').textContent = correo;
             document.getElementById('datoCorreo').style.display = correo ? 'flex' : 'none';
 
@@ -171,50 +185,35 @@
 
             document.getElementById('instagramPrevia').textContent = ig;
             document.getElementById('datoInstagram').style.display = ig ? 'flex' : 'none';
+
+            // Actualizar enlace de guardar contacto
+            let vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:${nombre}\nTITLE:${cargo}\n`;
+            if(tel) vcard += `TEL:${tel}\n`;
+            if(correo) vcard += `EMAIL:${correo}\n`;
+            vcard += `END:VCARD`;
+            const blob = new Blob([vcard], {type: 'text/vcard'});
+            document.getElementById('botonGuardar').href = URL.createObjectURL(blob);
         }
 
+        // Obtener contenido para el QR
         function obtenerContenidoQR() {
-            const nombre = document.getElementById('nombre').value.trim();
-            const cargo = document.getElementById('cargo').value.trim();
-            const tel = document.getElementById('telefono').value.trim();
-            const usuario = document.getElementById('usuarioWhatsapp').value.trim();
-            const correo = document.getElementById('correo').value.trim();
-
-            let enlaceWhatsapp = '';
-            if (usuario && usuario !== '@') {
-                let usuarioLimpio = usuario.replace('@', '');
-                enlaceWhatsapp = `https://wa.me/${usuarioLimpio}`;
-            } else if (tel) {
-                let numeroLimpio = tel.replace(/\D/g, '');
-                enlaceWhatsapp = `https://wa.me/${numeroLimpio}`;
-            }
-
-            return `BEGIN:VCARD
-VERSION:3.0
-FN:${nombre}
-TITLE:${cargo}
-TEL:${tel}
-EMAIL:${correo}
-URL:${enlaceWhatsapp || ''}
-END:VCARD`;
+            const enlace = document.getElementById('enlaceTarjeta').value.trim();
+            return enlace || "https://chava0928.github.io/mis-tarjetas-qr/tarjeta-cliente.html";
         }
 
-        function obtenerContenidoQR() {
-    return "https://chava0928.github.io/mis-tarjetas-qr/tarjeta-cliente.html";
-}
-
-function generarQR() {
-    const contenido = obtenerContenidoQR();
-    document.getElementById('zonaQR').style.display = 'block';
-    document.getElementById('btnDescargar').style.display = 'none';
-    
-    QRCode.toCanvas(document.getElementById('codigoQR'), contenido, {
-        width: 350, margin: 3, color: { dark: '#111111', light: '#ffffff' }
-    }, function (error) {
-        if (error) alert('Error: ' + error);
-        else document.getElementById('btnDescargar').style.display = 'inline-block';
-    });
-}
+        // Generar el código QR
+        function generarQR() {
+            const contenido = obtenerContenidoQR();
+            document.getElementById('zonaQR').style.display = 'block';
+            document.getElementById('btnDescargar').style.display = 'none';
+            
+            QRCode.toCanvas(document.getElementById('codigoQR'), contenido, {
+                width: 350, margin: 3, color: { dark: '#111111', light: '#ffffff' }
+            }, function (error) {
+                if (error) alert('Error: ' + error);
+                else document.getElementById('btnDescargar').style.display = 'inline-block';
+            });
+        }
 
         function descargarQR() {
             const enlace = document.createElement('a');
@@ -223,56 +222,36 @@ function generarQR() {
             enlace.click();
         }
 
-        actualizarVista();
+        // Generar código completo de la tarjeta
         function generarCodigoTarjeta() {
-    const n = document.getElementById('nombre').value;
-    const c = document.getElementById('cargo').value;
-    const t = document.getElementById('telefono').value;
-    const co = document.getElementById('correo').value;
-    const w = document.getElementById('web').value;
-    const f = document.getElementById('facebook').value;
-    const i = document.getElementById('instagram').value;
+            const n = document.getElementById('nombre').value.trim() || 'Nombre Completo';
+            const c = document.getElementById('cargo').value.trim() || 'Cargo / Profesión';
+            const t = document.getElementById('telefono').value.trim();
+            const co = document.getElementById('correo').value.trim();
+            const w = document.getElementById('web').value.trim();
+            const f = document.getElementById('facebook').value.trim();
+            const i = document.getElementById('instagram').value.trim();
 
-    const codigo = `<div class="tarjeta">
+            const codigo = `<div class="tarjeta">
     <div class="portada" style="background-image: url(${urlPortada});"></div>
-    <div class="foto-perfil" style="background-image: url(${urlFotoPerfil});background-size:cover;background-position:center;">${!urlFotoPerfil ? '👤' : ''}</div>
-    <h3 class="nombre">${n || 'Nombre Completo'}</h3>
-    <p class="cargo">${c || 'Cargo / Profesión'}</p>
+    <div class="foto-perfil" style="background-image: url(${urlFotoPerfil || ''});background-size:cover;background-position:center;">${!urlFotoPerfil ? '👤' : ''}</div>
+    <h3 class="nombre">${n}</h3>
+    <p class="cargo">${c}</p>
 ${t?`<div class="dato"><span class="icono">📞</span><span>${t}</span></div>`:''}
 ${co?`<div class="dato"><span class="icono">✉️</span><span>${co}</span></div>`:''}
 ${w?`<div class="dato"><span class="icono">🌐</span><a href="${w}" target="_blank">${w}</a></div>`:''}
-${f?`<div class="dato"><span class="icono">📘</span><a href="${f}" target="_blank">Facebook</a></div>`:''}
+${f?`<div class="dato"><span class="icono" style="color:#1877F2; font-weight:bold; font-size:22px;">f</span><a href="${f}" target="_blank">Facebook</a></div>`:''}
 ${i?`<div class="dato"><span class="icono">📸</span><a href="${i}" target="_blank">Instagram</a></div>`:''}
 </div>`;
-    document.getElementById('codigoGenerado').style.display = 'block';
-    document.getElementById('codigoGenerado').value = codigo;
-    alert('¡Código listo! Copia todo y pégalo en tarjeta-cliente.html ✅');
-}
-let urlPortada = "";
-let urlFotoPerfil = "";
+            document.getElementById('codigoGenerado').value = codigo;
+            alert('¡Código listo! Copia todo y pégalo en tarjeta-cliente.html ✅');
+        }
 
-// Cargar portada
-document.getElementById('portada').addEventListener('change', function(e) {
-    const archivo = e.target.files[0];
-    if (!archivo) return;
-    const lector = new FileReader();
-    lector.onload = function(e) {
-        urlPortada = e.target.result;
-    };
-    lector.readAsDataURL(archivo);
-});
-
-// Cargar foto de perfil
-document.getElementById('fotoPerfil').addEventListener('change', function(e) {
-    const archivo = e.target.files[0];
-    if (!archivo) return;
-    const lector = new FileReader();
-    lector.onload = function(e) {
-        urlFotoPerfil = e.target.result;
-    };
-    lector.readAsDataURL(archivo);
-});
-        
+        // Actualizar vista cada vez que se escribe algo
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', actualizarVista);
+        });
+        actualizarVista();
     </script>
 </body>
 </html>

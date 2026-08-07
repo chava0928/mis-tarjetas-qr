@@ -253,16 +253,24 @@ let urlFotoPerfil = "";
 
 // Cargar portada
 document.getElementById('portada').addEventListener('change', function(e) {
+    const archivo = e.target.files[0];
+    if (!archivo) return;
     const lector = new FileReader();
-    lector.onload = e => { urlPortada = e.target.result; };
-    lector.readAsDataURL(e.target.files[0]);
+    lector.onload = function(e) {
+        urlPortada = e.target.result;
+    };
+    lector.readAsDataURL(archivo);
 });
 
 // Cargar foto de perfil
 document.getElementById('fotoPerfil').addEventListener('change', function(e) {
+    const archivo = e.target.files[0];
+    if (!archivo) return;
     const lector = new FileReader();
-    lector.onload = e => { urlFotoPerfil = e.target.result; };
-    lector.readAsDataURL(e.target.files[0]);
+    lector.onload = function(e) {
+        urlFotoPerfil = e.target.result;
+    };
+    lector.readAsDataURL(archivo);
 });
         
     </script>

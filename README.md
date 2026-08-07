@@ -15,6 +15,6 @@ Herramienta para crear tarjetas de presentación digitales personalizadas, con c
 4. Sube los archivos a GitHub y compártelos con tu cliente
 
 ---
-**Desarrollado por: 
-Francisco Chavarriaga**
-*Desarrollador de Software*
+Desarrollado por: 
+Francisco Chavarriaga
+Desarrollador de Software
